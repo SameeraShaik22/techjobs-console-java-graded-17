@@ -75,7 +75,7 @@ public class JobData {
 
             String aValue = row.get(column);
 
-            if (aValue.contains(value)) {
+            if (aValue.toUpperCase().contains(value.toUpperCase())) {
                 jobs.add(row);
             }
         }
@@ -93,9 +93,25 @@ public class JobData {
 
         // load data, if not already loaded
         loadData();
+        ArrayList<HashMap<String, String>>results=new ArrayList<>();
+
+            for (int i = 0; i < allJobs.size(); i++) {
+                HashMap<String, String> jobValue = allJobs.get(i);
+
+                    for (String valueJobs : jobValue.values()) {
+                       // System.out.println(valueJobs);
+                        if(valueJobs.toUpperCase().contains(value.toUpperCase())){
+                            results.add(jobValue);
+                            break;
+                        }
+
+                    }
+
+
+                }
 
         // TODO - implement this method
-        return null;
+        return results;
     }
 
     /**
